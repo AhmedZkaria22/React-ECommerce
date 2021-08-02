@@ -1,0 +1,139 @@
+.App {
+  position: relative;
+}
+
+@media (max-width: 460px) {
+  #AddItemModal {
+    overflow: auto !important;
+  }
+}
+@media (max-width: 575.999px) {
+  #AddItemModal {
+    padding: 1% 10% 0% !important;
+    height: 105% !important;
+  }
+  #AddItemModal h1 {
+    font-size: 1.5rem !important;
+  }
+  #AddItemModal form > .row:first-of-type {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+  #AddItemModal form > .row:first-of-type > .col:last-of-type {
+    margin-top: 0.3rem !important;
+  }
+  #AddItemModal form .form-control {
+    font-size: 0.9rem !important;
+  }
+  #AddItemModal form .AddItemModal__filters, #AddItemModal form .AddItemModal__gender {
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+  }
+  #AddItemModal form .AddItemModal__filters .form-label:first-of-type, #AddItemModal form .AddItemModal__gender .form-label:first-of-type {
+    width: auto !important;
+    clear: none !important;
+    font-size: 1.3rem !important;
+  }
+  #AddItemModal form .AddItemModal__filters .form-label:not(:first-of-type), #AddItemModal form .AddItemModal__gender .form-label:not(:first-of-type) {
+    font-size: 16px !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  #AddItemModal h1 {
+    font-size: 1.7rem !important;
+  }
+  #AddItemModal form .form-control {
+    font-size: 0.9rem !important;
+  }
+  #AddItemModal form > .row:first-of-type {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+  }
+  #AddItemModal form .AddItemModal__filters, #AddItemModal form .AddItemModal__gender {
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+  }
+  #AddItemModal form .AddItemModal__filters .form-label:first-of-type, #AddItemModal form .AddItemModal__gender .form-label:first-of-type {
+    width: auto !important;
+    clear: none !important;
+    font-size: 1.3rem !important;
+  }
+  #AddItemModal form .AddItemModal__filters .form-label:not(:first-of-type), #AddItemModal form .AddItemModal__gender .form-label:not(:first-of-type) {
+    font-size: 16px !important;
+  }
+}
+@media (min-width: 768.01px) and (max-width: 992px) {
+  #AddItemModal h1 {
+    font-size: 2.2rem !important;
+  }
+  #AddItemModal form .AddItemModal__filters .form-label:first-of-type, #AddItemModal form .AddItemModal__gender .form-label:first-of-type {
+    width: 100% !important;
+    clear: both !important;
+  }
+}
+@media (min-width: 992.01px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+}
+#AddItemModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fae3;
+  font-size: 1.5rem;
+  font-family: monospace;
+  padding: 1% 15% 0%;
+  z-index: 999999999999999;
+}
+#AddItemModal h1 {
+  color: cornflowerblue;
+  position: relative;
+}
+#AddItemModal h1 #form__close {
+  position: absolute;
+  top: -4%;
+  right: 0;
+  color: #e24747;
+  background-color: transparent;
+  border: none;
+  font-size: 65%;
+  font-weight: 600;
+}
+#AddItemModal form {
+  position: relative;
+}
+#AddItemModal form > * {
+  margin-bottom: 0.3rem;
+}
+#AddItemModal form .form-group {
+  margin-bottom: 0.3rem;
+}
+#AddItemModal form .AddItemModal__filters, #AddItemModal form .AddItemModal__gender {
+  float: left;
+  width: 50%;
+}
+#AddItemModal form .AddItemModal__filters .form-label:first-of-type, #AddItemModal form .AddItemModal__gender .form-label:first-of-type {
+  margin-right: 2rem;
+  margin-bottom: 0;
+}
+#AddItemModal form .AddItemModal__filters .form-label:not(:first-of-type), #AddItemModal form .AddItemModal__gender .form-label:not(:first-of-type) {
+  font-size: 18px;
+  margin-right: 1rem;
+  display: inline-block;
+  margin-bottom: 0;
+}
+#AddItemModal form .AddItemModal__filters .form-control, #AddItemModal form .AddItemModal__gender .form-control {
+  width: auto;
+  display: inline-block;
+  height: auto;
+  margin-right: 0.2rem;
+}

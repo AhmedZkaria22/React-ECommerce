@@ -1,0 +1,9 @@
+
+.large{ max-width: 100%;  height: auto; }
+.small{ width: 5rem;  height: 7.5rem; }
+
+.Product_related_item:hover{ text-decoration: none; }
+    
+.Product_related_item .figure-caption p{font-size: 16px;}
+.Product_related_item .figure-caption p:first-of-type{ font-weight: 400; }
+.Product_related_item .figure-caption p:last-of-type{ font-weight: 500; }

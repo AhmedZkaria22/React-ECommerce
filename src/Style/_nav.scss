@@ -1,0 +1,26 @@
+#nav{
+    background-color: white;
+    margin-bottom: 3rem;
+    justify-content: flex-start;
+    padding: 1.5rem 5%;    
+    position: relative;
+    border-bottom: 3px solid  #ff202059;
+    // box-shadow: #14151759 0px 10px 20px 0px;
+    box-shadow: #9bddf599 0px 10px 20px 0px;    
+
+    a{ margin-right: 1.5rem;  text-decoration: none; color: #141517;
+        font-weight: 600; 
+        &:hover{ color: #FF2020; }        
+        &:nth-last-of-type(1) , &:nth-last-of-type(2){ 
+            position: absolute;     bottom: 34%; 
+            
+            svg{ font-weight: 300; }
+        }
+        &:nth-last-of-type(1) { right: 4rem; 
+            span{
+                
+            }
+        }
+        &:nth-last-of-type(2){ right: 0.5rem; }
+    }
+}

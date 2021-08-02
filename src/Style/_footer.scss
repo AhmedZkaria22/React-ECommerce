@@ -1,0 +1,20 @@
+footer{
+    display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5% 5.0%;
+    background-color: #171613;    
+    @media (max-width: 768px){ flex-direction: column;  padding: 4.0% 5.0%;}
+    h6{ 
+        color: white;
+        @media (max-width: 576px){ font-size: 0.9rem; } 
+        a{ margin-left: 0.4rem;  text-decoration: none;  color: #FF2020;    &:hover{ color: #FF2020; text-decoration: none;} }
+    }
+    .list-group{
+        .list-group-item{
+            background-color: transparent;   border: none;
+            @media (max-width: 768px){ padding-bottom: 0rem; }
+            a{ color: #bbb9b5; text-decoration: none; }
+        }
+    }
+}
