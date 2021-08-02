@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/React-ECommerce/static/css/main.9a5b1634.chunk.css",
+    "main.js": "/React-ECommerce/static/js/main.584edc82.chunk.js",
+    "main.js.map": "/React-ECommerce/static/js/main.584edc82.chunk.js.map",
+    "runtime-main.js": "/React-ECommerce/static/js/runtime-main.98b7a7a8.js",
+    "runtime-main.js.map": "/React-ECommerce/static/js/runtime-main.98b7a7a8.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/React-ECommerce/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.c6532f08.chunk.js": "/React-ECommerce/static/js/2.c6532f08.chunk.js",
+    "static/js/2.c6532f08.chunk.js.map": "/React-ECommerce/static/js/2.c6532f08.chunk.js.map",
+    "static/js/3.3fa520dc.chunk.js": "/React-ECommerce/static/js/3.3fa520dc.chunk.js",
+    "static/js/3.3fa520dc.chunk.js.map": "/React-ECommerce/static/js/3.3fa520dc.chunk.js.map",
+    "index.html": "/React-ECommerce/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/React-ECommerce/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.9a5b1634.chunk.css.map": "/React-ECommerce/static/css/main.9a5b1634.chunk.css.map",
+    "static/js/2.c6532f08.chunk.js.LICENSE.txt": "/React-ECommerce/static/js/2.c6532f08.chunk.js.LICENSE.txt",
+    "static/media/ShopingCart.css": "/React-ECommerce/static/media/brand.adfc432b.jpg",
+    "static/media/ProductView.css": "/React-ECommerce/static/media/brand.b5fbf81c.ico",
+    "static/media/services1.f68ecd71.svg": "/React-ECommerce/static/media/services1.f68ecd71.svg",
+    "static/media/services2.22555a9e.svg": "/React-ECommerce/static/media/services2.22555a9e.svg",
+    "static/media/services3.62fde65f.svg": "/React-ECommerce/static/media/services3.62fde65f.svg",
+    "static/media/services4.1364ffa4.svg": "/React-ECommerce/static/media/services4.1364ffa4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98b7a7a8.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.c6532f08.chunk.js",
+    "static/css/main.9a5b1634.chunk.css",
+    "static/js/main.584edc82.chunk.js"
+  ]
+}
