@@ -1,7 +1,8 @@
 import Home from './Pages/Home'
 import Shop from './Pages/Shop'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import TestFire from './Pages/TestFire';
 
@@ -23,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/React-ECommerce">
       <header></header>
       <Navbar /> 
       <div className={'App'}>

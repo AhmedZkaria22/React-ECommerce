@@ -12,6 +12,7 @@ import UseFirestore from '../Firebase/UseFirestore'
 
 import headerPh from '../Photos/brand.jpg';
 import vd1 from '../Photos/Project.mp4';
+import { Link } from 'react-router-dom'
 // import vd2 from '../Photos/Project.ogv';
 
 function Home (){
@@ -61,7 +62,7 @@ function Home (){
                 <Col lg={6} md={9} sm={12}>
                 {
                     monthlySale.map( (monthlySaleItem, index) => ( index === 0 ) &&
-                    <Figure as={NavLink} href={`/ReactEcommerceTest/${monthlySaleItem.id}`}>
+                    <Figure as={Link} to={`/ReactEcommerceTest/${monthlySaleItem.id}`}>
                         <Figure.Image  src={`${monthlySaleItem.images[0]}`} style={{ width: '70%' }}/>
                         <Figure.Caption> 
                             <h3 className={'text-center'}>{monthlySaleItem.title}</h3> 

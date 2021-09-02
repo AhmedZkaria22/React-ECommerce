@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Col, Figure, SafeAnchor } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 function Product_related_col({preload}) { 
 
@@ -13,7 +14,8 @@ function Product_related_col({preload}) {
 
     return (
         <Col lg={3} md={4} sm={6} xs={9}>
-            <Figure className={'Test_Product_related_item text-center'} as={SafeAnchor} href={`/ReactEcommerceTest/${preload[0]}`}>
+            {/* <Figure className={'Test_Product_related_item text-center'} as={SafeAnchor} href={`/ReactEcommerceTest/${preload[0]}`}> */}
+            <Figure className={'Test_Product_related_item text-center'} as={Link} to={`/ReactEcommerceTest/${preload[0]}`}>
                 <Figure.Image
                     src={`${preload[1]}`}
                 />

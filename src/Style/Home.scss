@@ -85,6 +85,7 @@
         &>div:first-of-type{
             .figure{
                 text-align: center;
+                &:hover{ text-decoration: none; }
                 @media (min-width: 575.999px) and (max-width: 768px){ 
                     .img-fluid{max-width: 75%!important; height: 12.5rem!important; max-height: 12.5rem!important;}
                 }
@@ -131,6 +132,7 @@
             }
             .figure{
                 text-align: center;
+                &:hover{ text-decoration: none; }
                 @media (min-width: 575.999px) and (max-width: 768px){ 
                     .img-fluid{max-width: 75%!important; height: 10rem!important; max-height: 10rem!important;}
                 }

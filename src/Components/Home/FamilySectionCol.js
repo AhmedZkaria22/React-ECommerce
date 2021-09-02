@@ -9,7 +9,7 @@ function FamilySectionCol({cardType}) {
                 <Card.Body>
                     <Card.Text className={'h3 text-center'}> {cardType} </Card.Text>                                    
                     {/* <Link to={'/ReactEcommerceShop'} target={'_blank'} className={'text-center'}>Shop now</Link>  */}
-                    <a href={'/ReactEcommerceShop'} target={'_blank'} className={'text-center'}>Shop now</a>
+                    <Link to={'/ReactEcommerceShop'} target={'_blank'} className={'text-center'}>Shop now</Link>
                 </Card.Body> 
             </Card>                        
         </Col>
