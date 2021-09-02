@@ -1,7 +1,7 @@
 import '../Style/Home.css'
 import React, { useEffect } from 'react'
 import 'react-bootstrap'
-import { Container, Row, Col,  NavLink, Carousel, Figure } from 'react-bootstrap'
+import { Container, Row, Col, Carousel, Figure } from 'react-bootstrap'
 
 import FamilySectionCol from '../Components/Home/FamilySectionCol'
 import SaleSection4smFigure from '../Components/Home/SaleSection4smFigure'
