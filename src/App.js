@@ -29,7 +29,7 @@ function App() {
       <Navbar /> 
       <div className={'App'}>
         <Switch>
-          <Route path="/ReactEcommercehome" exact component={Home} />
+          <Route path="/ReactEcommerceHome" exact component={Home} />
           <Route path="/ReactEcommerceShop" component={Shop} />      
           <Route path="/ReactEcommerceTest" component={TestFire} /> 
           <PrivateRoute path="/ReactEcommerceAccount" exact component={Account}/>
