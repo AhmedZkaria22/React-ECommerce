@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/React-ECommerce">
+    <Router basename="/">
       <header></header>
       <Navbar /> 
       <div className={'App'}>
