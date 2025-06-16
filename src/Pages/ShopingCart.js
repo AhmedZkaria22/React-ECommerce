@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import { AuthContext } from '../Auth/AuthContext';
 import { db } from '../Firebase/FireConfig';
 import UseFirestore from '../Firebase/UseFirestore';
 import '../Style/ShopingCart.css';
 import ShopingCartItem from './ShopingCartItem';
+import dayjs from 'dayjs';
 
 function ShopingCart() { 
 
@@ -12,6 +13,8 @@ function ShopingCart() {
 
     const [,,,,cartItems,,handelDeleteItem] = UseFirestore();
     const [tot, setTot] = useState(0);
+    const [checkedCustomer, setCheckedCustomer] = useState(null);
+    const [lastBuyItem, setLastBuyItem] = useState(null);
 
     const handleCloseModal = (e) => {
         e.target.parentElement.parentElement.parentElement.style.display = 'none';
@@ -22,6 +25,33 @@ function ShopingCart() {
         e.target.parentElement.lastElementChild.style.display = 'block';
         e.target.style.display = 'none';
     }
+
+    const updateCustomer = async(docId, customer) => {
+        await db.collection('Customers').doc(docId).update({...customer});
+    }
+
+
+    useEffect(() => {
+        db.collection('Customers').where('email', '==', `${user?.email}`).onSnapshot(
+            snap => {
+            const fetchedIt = snap.docs.map(
+                doc => { return { ...doc.data(), id: doc.id } }                    
+            );
+    
+            setCheckedCustomer(fetchedIt[0]);
+            }
+        );      
+        db.collection(`User-${user?.email}`).orderBy('createdAt', 'desc').onSnapshot(
+            snap => {
+                const fetchedCIt = snap.docs.map(
+                doc => { return { ...doc.data(), id: doc.id } }                    
+                );
+    
+                setLastBuyItem(fetchedCIt[0]);
+            }
+        );        
+    }, [user])
+    
 
     return (
         <>        
@@ -46,7 +76,22 @@ function ShopingCart() {
                                 </Modal.Body>
 
                                 <Modal.Footer>
-                                    <Button variant="danger" onClick={ (e) => {handelDeleteItem(`${cartItem.id}`);  handleCloseModal(e);} }>Delete</Button>
+                                    {/* <Button variant="danger" onClick={ (e) => {handelDeleteItem(`${cartItem.id}`);  handleCloseModal(e);} }>Delete</Button> */}
+                                    <Button variant="danger" onClick={ (e) => {
+                                        handelDeleteItem(`${cartItem.id}`);
+                                        updateCustomer(checkedCustomer?.id, {
+                                            index: checkedCustomer?.index,
+                                            image: checkedCustomer?.image,
+                                            email: checkedCustomer?.email,
+                                            name: checkedCustomer?.name,
+                                            firstSignIn: checkedCustomer?.firstSignIn,
+                                            // lastBuy: dayjs(new Date(lastBuyItem?.createdAt)).format("MM/DD/YYYY")
+                                            lastBuy: !lastBuyItem ? checkedCustomer?.lastBuy : dayjs(new Date(lastBuyItem?.createdAt)).format("MM/DD/YYYY")
+                                        });
+                                        setCheckedCustomer(null);
+                                        setLastBuyItem(null);
+                                        handleCloseModal(e);
+                                    } }>Delete</Button>
                                     <Button variant="light" onClick={ (e) => handleCloseModal(e) }>Cancel</Button>
                                 </Modal.Footer>
                             </Modal.Dialog>
@@ -67,7 +112,20 @@ function ShopingCart() {
                                     </Modal.Body>
 
                                     <Modal.Footer>
-                                        <Button variant="danger" onClick={ (e) => {handelDeleteItem(`${cartItem.id}`);  handleCloseModal(e);} }>Delete</Button>
+                                        <Button variant="danger" onClick={ (e) => {
+                                            handelDeleteItem(`${cartItem.id}`);
+                                            updateCustomer(checkedCustomer?.id, {
+                                                index: checkedCustomer?.index,
+                                                image: checkedCustomer?.image,
+                                                email: checkedCustomer?.email,
+                                                name: checkedCustomer?.name,
+                                                firstSignIn: checkedCustomer?.firstSignIn,
+                                                lastBuy: !lastBuyItem ? checkedCustomer?.lastBuy : dayjs(new Date(lastBuyItem?.createdAt)).format("MM/DD/YYYY")
+                                            });  
+                                            setCheckedCustomer(null);
+                                            setLastBuyItem(null);    
+                                            handleCloseModal(e);
+                                        } }>Delete</Button>
                                         <Button variant="light" onClick={ (e) => handleCloseModal(e) }>Cancel</Button>
                                     </Modal.Footer>
                                 </Modal.Dialog>
@@ -88,7 +146,7 @@ function ShopingCart() {
                          Product Items collection = storage
                          User-${user.email} collection = client 
                     */}
-                    
+                    {/* {console.log('cartItems', cartItems, checkedCustomer, lastBuyItem)} */}
                     <button type="button" onClick={ () => {
                         cartItems.map( (cartItem) => {                            
                             let sizeChange = `sizes.${cartItem.size}`;                            
@@ -108,6 +166,16 @@ function ShopingCart() {
                             .then(() => { console.log("user with id aUserUid updated"); })
                             .catch(error => { console.log("Error getting document:", error); }); 
 
+                            // to update customer in customers collection with lastBuy from last item in cart, lastBuyItem (last item in current cart) || checkedCustomer?.lastBuy(last item was in current cart before empty)
+                            updateCustomer(checkedCustomer?.id, {
+                                index: checkedCustomer?.index,
+                                image: checkedCustomer?.image,
+                                email: checkedCustomer?.email,
+                                name: checkedCustomer?.name,
+                                firstSignIn: checkedCustomer?.firstSignIn,
+                                lastBuy: !lastBuyItem ? checkedCustomer?.lastBuy : dayjs(new Date(lastBuyItem?.createdAt)).format("MM/DD/YYYY")
+                            });
+                            
                             db.collection(`User-${user.email}`).get().then(doc => {
                                 doc.forEach(element => { element.ref.delete(); });
                             });

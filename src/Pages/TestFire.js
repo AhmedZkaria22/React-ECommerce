@@ -1,9 +1,12 @@
-import React, { useState }  from 'react'
+import React, { useContext, useEffect, useState }  from 'react'
 import { Container, Col, Row, ListGroup, Carousel } from 'react-bootstrap';
 import UseFirestore from '../Firebase/UseFirestore';
 import '../Style/ProductView.css';
 import Product_view_listGroup from '../Components/Product/Product_view_listGroup';
 import Product_related_col from '../Components/Product/Product_related_col';
+import dayjs from 'dayjs';
+import { AuthContext } from '../Auth/AuthContext';
+import { db } from '../Firebase/FireConfig';
 
 
 let dt = new Date();
@@ -25,12 +28,20 @@ const TestFire = () => {
 
     const [items, , ,,, addCartItem] = UseFirestore();
 
+    const { user } = useContext(AuthContext);
+    const [checkedCustomer, setCheckedCustomer] = useState(null);
+
     const ReadProduct = 
         window.location.href.substring( window.location.href.lastIndexOf("/")+1 , window.location.href.length );
     
     console.log(
         items.filter( function(item)  { return item.id === ReadProduct } )
     ); 
+
+    const updateCustomer = async(docId, customer) => {
+        await db.collection('Customers').doc(docId).update({...customer});
+    }
+    
     
     const ReadCartItem = async() => {
         const cartItem = {
@@ -39,14 +50,39 @@ const TestFire = () => {
             name: document.querySelector("#Test_Product_view__row1 > div:last-of-type h1").textContent,
             price: document.querySelector("#Test_Product_view__row1 > div:last-of-type p.h3").textContent,    
             size: document.querySelector("#Test_Product_view__row1 > div:last-of-type .list-group:nth-of-type(2) .list-group-item.checked").textContent,
-            color: document.querySelector("#Test_Product_view__row1 > div:last-of-type .list-group:nth-of-type(3) .list-group-item.checked p").style.backgroundColor,
+            color: document.querySelector("#Test_Product_view__row1 > div:last-of-type .list-group:nth-of-type(3) .list-group-item.checked p")?.style?.backgroundColor,
             amount: document.querySelector("#Test_Product_view__row1 > div:last-of-type .list-group:nth-of-type(4) .list-group-item:nth-of-type(2)").textContent,
             storeAmount: document.querySelector("#Test_Product_view__row1 > div:last-of-type .Product_view_sizeStock span").textContent,            
             totId: document.querySelector("#Test_Product_view__row1 > div:last-of-type .ProductId").textContent,
         };
         await addCartItem(cartItem);
-        console.log(cartItem);
+        // console.log(cartItem);
+
+        // to update customer in customers collection with lastBuy from current added item
+        updateCustomer(checkedCustomer?.id, {
+            index: checkedCustomer?.index,
+            image: checkedCustomer?.image,
+            email: checkedCustomer?.email,
+            name: checkedCustomer?.name,
+            firstSignIn: checkedCustomer?.firstSignIn,
+            lastBuy: dayjs(new Date(dt.toLocaleString().substring( 0, dt.toLocaleString().indexOf(",") ))).format("MM/DD/YYYY")
+        });        
     }
+
+    useEffect(() => {
+        const unSubscribe = db.collection('Customers').where('email', '==', `${user?.email}`).onSnapshot(
+            snap => {
+            const fetchedIt = snap.docs.map(
+                doc => { return { ...doc.data(), id: doc.id } }                    
+            );
+    
+            setCheckedCustomer(fetchedIt[0]);
+            }
+        );
+
+        return unSubscribe;
+    }, [user])
+
 
     return (
         <>

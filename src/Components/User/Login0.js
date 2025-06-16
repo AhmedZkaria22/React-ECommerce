@@ -72,7 +72,7 @@ const Login = () => {
     })
   };
   
-  // handleSubmit2 : to check customer found or not using customer info from handleSubmit1
+  // handleSubmit2 : to check customer found or not and get customers length using customer info from handleSubmit1
   const handleSubmit2 = () => {    
     // to check if customer found in collection or not, to add customer in collection if not found
     db.collection('Customers').where('email', '==', `${customerInfo?.user?.email}`).onSnapshot(
@@ -84,10 +84,8 @@ const Login = () => {
         setCheckedCustomer(fetchedIt[0]);
       }
     );
-  };
 
-  // to get customers collection length, to use it as an index for new added customer
-  const getCustomersLength = () => {    
+    // to get customers collection length, to use it as an index for new added customer
     db.collection('Customers').onSnapshot(
       snap => {
         const fetchedIt = snap.docs.map(
@@ -96,7 +94,7 @@ const Login = () => {
 
         setCustomersLength(fetchedIt.length);
       }
-    );    
+    );
   };
 
   // handleSubmit3 : to add new customer in customers collection or update using checkedCustomer from handleSubmit2
@@ -135,22 +133,16 @@ const Login = () => {
     }
   };
 
-  /*condition handleSubmit3 to check all are changed 
-  customersLength state changed, will change to 0(collection empty||not found) || >= 1(collection not empty)
-  customerInfo state changed with data
-  checkedCustomer state changed, will change to undefined(not found) || filled object(found)*/
-  
   useEffect(() => {
+    // if(lastBuyItem && customerInfo){
     if(customerInfo){
       handleSubmit2();
-      getCustomersLength();
     }
-    
-    if(customersLength !== null && customerInfo && checkedCustomer !== null){
+    // condtion to check customersLength state changed, will change to 0(collection empty||not found) || >= 1(collection not empty)
+    if(customersLength != null){
       handleSubmit3();
     }
   }, [lastBuyItem, customerInfo, checkedCustomer, customersLength])
-  
 // this new submit logic to add signed in customer info as a new doc in customers collection  
 
 
